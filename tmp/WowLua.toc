@@ -1,0 +1,14 @@
+## Interface: 30200
+## Title: WowLua
+## Version: 32 
+## Author: Cladhaire
+## Notes: Interactive Lua interpreter and scratchpad
+## LoadManagers: AddonLoader
+## X-LoadOn-Slash: /wowlua, /lua
+## SavedVariables: WowLua_DB
+
+Localization.enUS.lua
+
+WowLua.lua
+FAIAP.lua
+WowLua.xml

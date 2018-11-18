@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: AuctionValue
+## Notes: Display the sum of all your auctions
+## Author: Florf
+## Version: 0.0.1
+## Dependencies:
+AuctionValue.lua

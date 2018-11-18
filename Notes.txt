@@ -1,0 +1,18 @@
+
+Get Variable info:
+	> x = 17
+	> foo = tostring(x)
+	> print(type(foo))
+	string
+
+
+
+QueryAuctionItems("",1,80,0,0,0,thispage)
+ end
+
+ -- the program now waits for the AUCTION_ITEM_LIST_UPDATE event to fire before processing the page of data
+
+
+--[[
+ After adding a few AddMessages to the code, I've come to realise that the program will get one page, use the event handler to read the data and store in AHTable and then get the next page, triggering a new AUCTIONITEMLIST_UPDATE event. Control then returns to the end of the Event Handler, and I believed the event would soon fire and send control back to the ReadTheAuctionHouse function again, but instead WOW totally freezes and I have to close it down and reload. 
+ ]]--

@@ -1,0 +1,40 @@
+
+$Page_Size = 50    antal auctions per sida
+
+
+start scan:
+¯¯¯¯¯¯¯¯¯¯¯
+
+	QueryAuctionItems("", 0, 0, 0, 0, 0, $Page, 0, 0)
+
+    $Total_Pages, $Total_Auctions = GetNumAuctionItems("list");
+	
+	
+	
+Scanna Sida:    -- är '''if $Variabel == nil then''' ens smart?
+¯¯¯¯¯¯¯¯¯¯¯¯
+	for i=1, GetNumAuctionItems("list"), 1 do
+
+    	local name, texture, count, quality, canUse, level, minBid, minIncrement,buyoutPrice, bidAmount, highestBidder, owner, sold = GetAuctionItemInfo("list", i)   -- i == 1
+
+        if buyoutPrice == nil then buyoutPrice = "" end
+        if highestBidder == nil then highestBidder = "" end
+        if sold == nil then sold = "" end
+        if canUse == nil then canUse = "" end
+        if owner == nil then owner = "" end
+
+        record = name .. ", " .. texture .. ", " .. count .. ", " .. quality .. ", " .. canUse .. ", " .. level .. ", " .. minBid .. ", " .. minIncrement .. ", " .. buyoutPrice .. ", " .. bidAmount .. ", " .. highestBidder .. ", " .. owner .. ", " .. sold
+        print(i..":  "..record)
+    end
+    local Page = Page + 1
+    Start_Scan(Page)
+	
+	
+Uppdatera Query: ***¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+	EVENT::AUCTION_ITEM_LIST_UPDATE 
+	
+	
+Skanna Nästa Sida::
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+	

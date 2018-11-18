@@ -1,0 +1,92 @@
+WOW ADDON API
+	http://vanilla-wow.wikia.com/wiki/World_of_Warcraft_API
+
+Aux History format
+	https://github.com/shirsig/Aux-Addon/issues/32
+
+
+IDEÉR PÅ ADDONS
+
+	1. Show Value of all your auctions
+		
+		When AuctionHouse()
+			Start UI
+			
+		GetallAuctions -> Forall -> addition
+		
+		
+	2. Auction Bid Tracker
+	
+		List all Bids & Update
+			Time, Item, Bid
+			
+		CheckMailboxmail for AH mails
+			if Money back: Bid == deleted
+			if Item: Bid == Completed
+
+
+
+	AH RELATERAT
+
+		canQuery,canQueryAll = CanSendAuctionQuery() 	-- http://classic-wow.wikia.com/wiki/API_QueryAuctionItems
+
+		batch,count = GetNumAuctionItems("list");		-- list, bidder, owner
+
+		QueryAuctionItems()								-- http://classic-wow.wikia.com/wiki/API_QueryAuctionItems
+
+		QueryAuctionItems("", 0, 0, 0, 0, 0, 0, 0, 0)
+			name,
+			min_level,
+			max_level,
+			slot,
+			class,
+			subclass,
+			page,
+			usable,
+			quality
+
+
+
+
+
+			
+			
+			
+if(AuctionFrame:IsVisible()==1)
+
+
+
+		KAN MAN REGGA EVENT OCH SCRIPT I SAMMA RAD SÅHÄR?!?!
+
+self:RegisterEvent("AUCTION_ITEM_LIST_UPDATE"	, "AuctionUpdate")
+		self:RegisterEvent("AUCTION_HOUSE_CLOSED"		, "ScanCanceled")
+
+
+
+
+--------------------------------
+####### FUNKTIONER O BÖS
+---------------------------------
+
+
+PlaceAuctionBid("type", index, bid)   - Place a bid on the selected auction item. 
+
+CalculateAuctionDeposit(runTime)   - Returns the required deposit for the current selling item given the specified duration (minutes). 
+
+CheckInbox()   - Populate client's inbox with mail from server. 
+
+GetInboxHeaderInfo(index)   - Returns information about a message in the inbox. 
+
+GetInboxItem(index)   - Returns description of the attachment attached to message at (index). 
+
+GetInboxNumItems()   - Returns the number of messages in your inbox. 
+
+GetInboxText(index)   - Returns the message text of message at (index). It also reads the inbox item, thus reducing its timeout to <= 3 days. 
+
+GetInboxInvoiceInfo(index)   - Returns informations about an auction house invoice. It also reads the inbox item, thus reducing its timeout to <= 3 days. 
+
+GetMoney()   - Returns an integer value of your held money in copper. 
+
+
+
+########### EVENTS
