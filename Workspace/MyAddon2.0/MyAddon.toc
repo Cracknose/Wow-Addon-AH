@@ -1,0 +1,8 @@
+## Interface: 11200
+## Title: MyAddon
+## Notes: Trying to understand the AH
+## Author: Florf
+## Version: 0.0.1
+## Dependencies:
+MyAddon.xml
+MyAddon.lua
