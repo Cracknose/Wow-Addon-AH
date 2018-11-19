@@ -2,10 +2,6 @@
 
 Hur fan lyckas jag få addonet att invänta 
 
-
-
-
-
 ]]--
 -- REKORD == 268 Auctions
 -- Base
@@ -22,18 +18,18 @@ local function print_debug(TEXT)
   DEFAULT_CHAT_FRAME:AddMessage(RED_FONT_COLOR_CODE .. TEXT)
 end
 
+-- Create a Frame to setup a scriptable eventhandler
 MyFrame = CreateFrame("Frame")
 MyFrame:RegisterEvent("AUCTION_ITEM_LIST_UPDATE")
 MyFrame:SetScript("OnEvent", Event_AuctionUpdate)
 
-
-function Event_AuctionUpdate()
- 
+-- Event Function
+function Event_AuctionUpdate() 
   print_debug("[AUCTION_ITEM_LIST_UPDATE]")
   Ma_Get_Auctions()
-
 end
 
+-- Slash Menu  /ma
 function MyAddon_Slash(msg)
 
     if not msg then
@@ -63,8 +59,8 @@ function MyAddon_Slash(msg)
 end
 
 
--- Function som körs automatiskt OnLoad  (behöver en xml fil för att funka)
--- Bindar Slash commandon till addonen
+-- Onload Function, Runs automaticly on load.  (Needs an xml file to work)
+-- Binds slash commands to the addon  [ /ma ]
 function MyAddon_OnLoad()
 	print("[MyAddon]: Loaded")
 	SlashCmdList["MYADDON"] = MyAddon_Slash;
@@ -73,8 +69,7 @@ function MyAddon_OnLoad()
 end
 
 
-
-
+-- Query AH for Page$
 function Ma_Query_AH(l_Page)
   print_debug("Function Query_AH  - "..l_Page)
 	QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
@@ -102,9 +97,7 @@ function Ma_Get_Auctions()
   if GetNumAuctionItems("list") < 50 then
           print("Last Page")
   end
-  for i=1, GetNumAuctionItems("list"), 1 do
-
-        
+  for i=1, GetNumAuctionItems("list"), 1 do        
 
         local name, texture, count, quality, canUse, level, minBid, minIncrement,buyoutPrice, bidAmount, highestBidder, owner, sold = GetAuctionItemInfo("list", i)   -- i == 1
 
@@ -118,8 +111,7 @@ function Ma_Get_Auctions()
         print(record)        
         
         Ma_Total_Items = Ma_Total_Items + 1
-        Ma_Next_Page = Ma_Page + 1
-        
+        Ma_Next_Page = Ma_Page + 1        
        
         print_debug("Page: "..Ma_Page .."   i:   "..i.."   T:"..Ma_Total_Items)        
 
