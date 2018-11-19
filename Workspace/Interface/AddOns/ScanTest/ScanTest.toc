@@ -1,8 +1,0 @@
-## Interface: 11200
-## Title: ScanTest
-## Notes: Gather AH data for usage
-## Author: Florf
-## Version: 0.0.1
-## Dependencies:
-##SavedVariables: MarketData
-ScanTest.lua
