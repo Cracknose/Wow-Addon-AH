@@ -11,6 +11,12 @@
       
       så frågan är kan man göra så att  Ma_Get_Auctions  märker om den returnar 0, dvs att AH inte är redo än
 
+      Gör ett Flödes Diagram
+
+      1. "Query"    QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
+      2. "EVENT"    Event
+      3. 
+
 ]]--
 
 Ma_Total_Items = 0
@@ -127,4 +133,6 @@ function Ma_Get_Auctions()
     end
 
     Ma_Page = Ma_Page + 1
+    Ma_Next_Page = Ma_Page + 1
+    Ma_Query_AH(Ma_Next_Page)
 end
