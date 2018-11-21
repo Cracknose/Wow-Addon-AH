@@ -4,6 +4,6 @@
 ## Author: Florf
 ## Version: 0.0.1
 ## Dependencies:
-##SavedVariables: Ma_datatable
+## SavedVariables: Ma_datatable
 MyAddon.xml
 MyAddon.lua

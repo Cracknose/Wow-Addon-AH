@@ -8,30 +8,30 @@
       2, Wait värkar heller inte finnas att använda
       
       så frågan är kan man göra så att  Ma_Get_Auctions  märker om den returnar 0, dvs att AH inte är redo än
-
-
+      
       Gör ett Flödes Diagram
 
       1. "Query"      QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
       2. "EVENT"      Event
       3. "Read loop"  GetAuctionItemInfo("list", i)
       ---------------
-      4. Reapeat
+      . Reapeat
 
-      +++ Fixa +++
 
-        Lägg till   datatable={}
-           table.insert(datatable,record)
+      Just nu så har jag last det till punkten att Resultatet uppnåss (GRATTIS)
+      MEN det är halvautomatiskt, jag måste trycka igång ett macro varje 6-8s sekund för uppdatering
+
+      Fixa en Eventhandler som kan hantera flertal events
 ]]--
 
 Ma_Total_Items = 0
 Ma_Page = 0
 Ma_datatable={}
-Ma_TableCount = 0
+Ma_TableCount = 1
 
 
 local function print(TEXT)
-  DEFAULT_CHAT_FRAME:AddMessage(YELLOW_FONT_COLOR_CODE .. TEXT)
+  DEFAULT_CHAT_FRAME:AddMessage(GREEN_FONT_COLOR_CODE .. TEXT)
 end
 
 local function print_debug(TEXT)
@@ -94,18 +94,7 @@ end
 function Ma_Query_AH(l_Page)
   print_debug("Function Query_AH  - "..l_Page)
 	QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
-    		--[[
-				"name", 
-				minLevel, 
-				maxLevel, 
-  				invTypeIndex, 
-  				classIndex, 
-  				subclassIndex, 
-  				page, 
-  				isUsable, 
-  				qualityIndex,
-    		]]--
-
+    		--[[ "name", 	minLevel, maxLevel, invTypeIndex, classIndex, subclassIndex, 	page, 	isUsable, 	qualityIndex,		]]--
 end
 
 function Ma_Number_of_Pages()   -- Stila upp den här
