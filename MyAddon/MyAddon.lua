@@ -2,14 +2,21 @@
 
 
       Just nu fungerar det här "Konceptuelt"
-
       starta med '/ma scan0'
       och använd sedan '/ma scan1' för att bläddra frammåt, måste ske manuellt för automatiskt vill inte
-
       1, Event triggar inte som jag tycker den borde
       2, Wait värkar heller inte finnas att använda
       
       så frågan är kan man göra så att  Ma_Get_Auctions  märker om den returnar 0, dvs att AH inte är redo än
+
+      
+
+
+
+
+
+
+
 
       Gör ett Flödes Diagram
 
@@ -124,15 +131,19 @@ function Ma_Get_Auctions()
         if owner == nil then owner = "" end
 
         record = name .. ", " .. texture .. ", " .. count .. ", " .. quality .. ", " .. canUse .. ", " .. level .. ", " .. minBid .. ", " .. minIncrement .. ", " .. buyoutPrice .. ", " .. bidAmount .. ", " .. highestBidder .. ", " .. owner .. ", " .. sold
-        print(record)        
+       -- print(record)        
         
         Ma_Total_Items = Ma_Total_Items + 1             
        
-        print_debug("Page: "..Ma_Page .."   i:   "..i.."   T:"..Ma_Total_Items)        
+        
 
     end
 
+    print_debug("Page: "..Ma_Page .."   T:"..Ma_Total_Items)  
+
     Ma_Page = Ma_Page + 1
     Ma_Next_Page = Ma_Page + 1
-    Ma_Query_AH(Ma_Next_Page)
+    Ma_Query_AH(Ma_Next_Page)   
+
+    
 end
