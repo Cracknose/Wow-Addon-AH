@@ -1,17 +1,10 @@
 --[[
 
-
-      Just nu fungerar det här "Konceptuelt"
-
-      starta med '/ma scan0'
-      och använd sedan '/ma scan1' för att bläddra frammåt, måste ske manuellt för automatiskt vill inte
-
-      1, Event triggar inte som jag tycker den borde
-      2, Wait värkar heller inte finnas att använda
-      
-      så frågan är kan man göra så att  Ma_Get_Auctions  märker om den returnar 0, dvs att AH inte är redo än
+Hur fan lyckas jag få addonet att invänta 
 
 ]]--
+-- REKORD == 268 Auctions
+-- Base
 
 Ma_Total_Items = 0
 Ma_Page = 0
@@ -49,8 +42,7 @@ function MyAddon_Slash(msg)
       Ma_Query_AH("0")    
 
     elseif (msg == "scan1") then
-      Ma_Next_Page = Ma_Page + 1
-      Ma_Query_AH(Ma_Next_Page)
+      Ma_Query_AH(1)
 
     elseif (msg == "pages") then
       Ma_Number_of_Pages()
@@ -120,11 +112,37 @@ function Ma_Get_Auctions()
         record = name .. ", " .. texture .. ", " .. count .. ", " .. quality .. ", " .. canUse .. ", " .. level .. ", " .. minBid .. ", " .. minIncrement .. ", " .. buyoutPrice .. ", " .. bidAmount .. ", " .. highestBidder .. ", " .. owner .. ", " .. sold
         print(record)        
         
-        Ma_Total_Items = Ma_Total_Items + 1             
+        Ma_Total_Items = Ma_Total_Items + 1
+              
        
         print_debug("Page: "..Ma_Page .."   i:   "..i.."   T:"..Ma_Total_Items)        
 
     end
 
-    Ma_Page = Ma_Page + 1
+    --Ma_Query_AH(Ma_Next_Page)
+    -- Ma_wait(1, Ma_Query_AH(Ma_Next_Page))
 end
+
+-- COPY PASTAT FRÅN NGT FORUM
+
+
+
+
+
+
+--[[
+function Ma_Main()
+  Ma_Page = 0
+  Ma_Scan_is_Done = 0
+
+  repeat
+    -- Check if the scan shall continue
+    if (GetNumAuctionItems("list") > 50) then
+      Ma_Scan_is_Done = 1
+    end
+
+
+  until Ma_Scan_is_Done == 1
+
+
+]]--

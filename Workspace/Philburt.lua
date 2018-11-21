@@ -1,0 +1,96 @@
+--http://wowprogramming.com/forums/development/76.html
+
+
+-- SAMMANFATTNING AV HANS SCRIPT
+batch,whole=CanSendAuctionQuery("list")
+
+datatable={}
+
+_,NumberOfAuctions=GetNumAuctionItems("list")
+
+if whole=1
+
+QueryAuctionItems("",0,0,0,0,0,0,0,0,true)
+
+for auctionitem=1,NumberOfAuctions
+
+name,texture,count,quality,canUse,level,minBid,minIncrement,buyoutPrice,bidAmount,highBidder,owner=GetAuctionItemInfo("list",auctionitem)
+
+table.insert(datatable,auctionitem,name)
+
+end
+
+end
+
+-- SLUT PÅ SAMMANFATTNING
+
+
+-------------------------
+
+-- in the MyFrameOnload() section of your lua file, use a line similar to: MyFrame:RegisterEvent("AUCTIONITEMLISTUPDATE")
+
+then put this function somewhere (i stuck it at the bottom of the lua file to keep it out of the way)
+
+function MyFrame_OnEvent(frame,event,...)
+
+if event=="AUCTION_ITEM_LIST_UPDATE" then
+          ReadTheAuctionHouse()
+end
+
+end
+
+----------------------------
+
+function MyButton_OnClick()
+
+     local CanDoWholeQuery
+     _,CanDoWholeQuery=CanSendAuctionQuery("list")
+     while CanDoWholeQuery~=1 do
+           FiveSecondDelay() -- just prevents hammering the CanSendAuctionQuery
+           _,CanDoWholeQuery=CanSendAuctionQuery("list")
+     end
+
+     --when CanDoWholeQuery is 1, we are allowed to actually query the AH, so:
+
+     QueryAuctionItems("",0,80,0,0,0,0,false,0,true)
+     -- this can only be done once every 15 mins
+
+end
+
+----------------------------------------
+-- everything now waits for the AUCTIONITEMLIST_UPDATE event to fire -- and the Event Checking routine calls the ReadTheAuctionHouse function
+
+Function ReadTheActionHouse()
+
+    local MaxAuctions
+    _,MaxAuctions = GetNumAuctionItems("list")
+    for tableloop=1,MaxAuctions
+          name,texture,count,quality,canuse,level,minBid,minIncrement,
+          buyoutPrice,bidAmount,highBidder,owner,
+          salestatus=GetAuctionItemInfo("list",tableloop)
+
+-- at this point you would put the data you want into your table -- for instance:
+
+          MyTable[#MyTable+1]=name
+    end
+
+end
+
+--------------------------
+
+function FiveSecondDelay()
+
+local delay
+delay=time()+4
+while time()<delay do
+end
+
+end
+
+function MyFrame_OnEvent(frame,event,...)
+
+if event=="AUCTION_ITEM_LIST_UPDATE" then
+          ReadTheAuctionHouse()
+end
+
+end
