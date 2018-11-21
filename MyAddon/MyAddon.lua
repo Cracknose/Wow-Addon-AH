@@ -9,21 +9,19 @@
       
       så frågan är kan man göra så att  Ma_Get_Auctions  märker om den returnar 0, dvs att AH inte är redo än
 
-      
-
-
-
-
-
-
-
 
       Gör ett Flödes Diagram
 
-      1. "Query"    QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
-      2. "EVENT"    Event
-      3. 
+      1. "Query"      QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
+      2. "EVENT"      Event
+      3. "Read loop"  GetAuctionItemInfo("list", i)
+      ---------------
+      4. Reapeat
 
+      +++ Fixa +++
+
+        Lägg till   datatable={}
+           table.insert(datatable,record)
 ]]--
 
 Ma_Total_Items = 0
