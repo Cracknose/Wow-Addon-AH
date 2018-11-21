@@ -22,6 +22,9 @@
       MEN det är halvautomatiskt, jag måste trycka igång ett macro varje 6-8s sekund för uppdatering
 
       Fixa en Eventhandler som kan hantera flertal events
+
+      !! Kommentera !! Kommentera !! Kommentera !! Kommentera !!
+
 ]]--
 
 Ma_Total_Items = 0
