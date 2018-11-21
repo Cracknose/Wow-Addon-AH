@@ -26,10 +26,12 @@
 
 Ma_Total_Items = 0
 Ma_Page = 0
+Ma_datatable={}
+Ma_TableCount = 0
 
 
 local function print(TEXT)
-  DEFAULT_CHAT_FRAME:AddMessage(GREEN_FONT_COLOR_CODE .. TEXT)
+  DEFAULT_CHAT_FRAME:AddMessage(YELLOW_FONT_COLOR_CODE .. TEXT)
 end
 
 local function print_debug(TEXT)
@@ -43,7 +45,7 @@ MyFrame:SetScript("OnEvent", Event_AuctionUpdate)
 
 -- Event Function
 function Event_AuctionUpdate() 
-  print_debug("[AUCTION_ITEM_LIST_UPDATE]")
+  print("[AUCTION_ITEM_LIST_UPDATE]")
   Ma_Get_Auctions()
 end
 
@@ -67,7 +69,7 @@ function MyAddon_Slash(msg)
       Ma_Number_of_Pages()
 
     elseif (msg == "view") then
-      Ma_Get_Auctions()
+      Ma_PrintTable()
 
     elseif (msg == "time") then
       My_Timer(1)
@@ -111,6 +113,14 @@ function Ma_Number_of_Pages()   -- Stila upp den här
   print(tostring(Value))
 end
 
+function Ma_PrintTable()
+  print_debug("-- Printing Table --")
+    for table, data in pairs(Ma_datatable) do
+      print(data)
+    end
+
+end
+
 
 
 function Ma_Get_Auctions()
@@ -128,8 +138,11 @@ function Ma_Get_Auctions()
         if canUse == nil then canUse = "" end
         if owner == nil then owner = "" end
 
-        record = name .. ", " .. texture .. ", " .. count .. ", " .. quality .. ", " .. canUse .. ", " .. level .. ", " .. minBid .. ", " .. minIncrement .. ", " .. buyoutPrice .. ", " .. bidAmount .. ", " .. highestBidder .. ", " .. owner .. ", " .. sold
+        record = Ma_TableCount .. ", " ..name .. ", " .. texture .. ", " .. count .. ", " .. quality .. ", " .. canUse .. ", " .. level .. ", " .. minBid .. ", " .. minIncrement .. ", " .. buyoutPrice .. ", " .. bidAmount .. ", " .. highestBidder .. ", " .. owner .. ", " .. sold
        -- print(record)        
+       
+       Ma_TableCount = Ma_TableCount + 1
+       table.insert(Ma_datatable,record)
         
         Ma_Total_Items = Ma_Total_Items + 1             
        
