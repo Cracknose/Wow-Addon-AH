@@ -2,34 +2,45 @@
     TEST ADDON FOR DEVELOPMENT AND TESTING
     
     Här ska jag testa fram En Wait function och threading
-      
+
+    * Gjorde om alla Functions till Locals om det nu gör ngt felaktigt
+    * Kolla upp AddMessage color schemes
+
 
 ]]--
 
+Test_Debugging_Enabled = 1
+Test_Debug_DataTable = {}
 
+local function Debug_Print(Msg)
+  DEFAULT_CHAT_FRAME:AddMessage(BLUE_FONT_COLOR_CODE .. Msg)
+end
 
+local function Debug_Log(Msg)
+  list.append(Test_Debug_DataTable, Msg)
+end
 
-local function print(TEXT)
-  DEFAULT_CHAT_FRAME:AddMessage(GREEN_FONT_COLOR_CODE .. TEXT)
+local function print(Msg)
+  DEFAULT_CHAT_FRAME:AddMessage(GREEN_FONT_COLOR_CODE .. Msg)
 end
 
 
 -- Slash Menu  /ma
-function Slash(msg)
+local function Slash(Msg)
 
-    if not msg then
-    	print("Slash is empty, try /ma scan")
+    if not Msg then
+    	print("Slash is empty, try /Ta")
     end
 
-    msg = string.lower(msg)
+    Msg = string.lower(Msg)
 
-    if (msg == "1") then
+    if (Msg == "1") then
   
 
-    elseif (msg == "2") then
+    elseif (Msg == "2") then
      
 
-    elseif (msg == "3") then
+    elseif (Msg == "3") then
      
 
     else
@@ -40,7 +51,7 @@ end
 
 -- Onload Function, Runs automaticly on load.  (Needs an xml file to work)
 -- Binds slash commands to the addon  [ /ma ]
-function Test_Addon_OnLoad()
+local function Test_Addon_OnLoad()
 	print("[TEST-ADDON]: Loaded")
 	SlashCmdList["TEST-ADDON"] = Slash;
 	SLASH_MYADDON1 = "/TestAddon";
@@ -48,7 +59,7 @@ function Test_Addon_OnLoad()
 end
 
 
-function Ta_WaitTime(T0)
+local function Ta_WaitTime(T0)
   local Time = GetTime()
   Time = math.floor(Time)
 

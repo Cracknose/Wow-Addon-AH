@@ -4,6 +4,6 @@
 ## Author: Florf
 ## Version: 0.0.1
 ## Dependencies:
-## SavedVariables: Error_Log_Table
+## SavedVariables: Test_Debug_DataTable
 Test-Addon.xml
 Test-Addon.lua
