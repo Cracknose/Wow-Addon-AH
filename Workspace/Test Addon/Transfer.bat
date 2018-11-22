@@ -1,0 +1,1 @@
+xcopy /S /I /Y "C:\Users\Machmod\Documents\CODE\GIT\Wow-Addon-AH\Workspace\Test Addon\Test-Addon" "D:\Games\WoW\WoW - 1.12\Interface\AddOns\Test-Addon"

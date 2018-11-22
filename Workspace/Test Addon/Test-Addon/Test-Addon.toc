@@ -1,0 +1,9 @@
+## Interface: 11200
+## Title: Test-Addon
+## Notes: For Research and Development
+## Author: Florf
+## Version: 0.0.1
+## Dependencies:
+## SavedVariables: Error_Log_Table
+Test-Addon.xml
+Test-Addon.lua

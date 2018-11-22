@@ -27,6 +27,8 @@
 
       !! Kommentera !! Kommentera !! Kommentera !! Kommentera !!
 
+      os.time()?????
+
       allting funkar nu egentligen fast ibland hinner inte Eventet och AH refresh att synca
       jag kollade lite i Aux adonnet och där används:
           thread(when, later(5), send_signal)

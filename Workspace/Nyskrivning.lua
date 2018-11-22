@@ -1,6 +1,11 @@
 --[[
 
-	har skrivit om Get and Fecth funktionerna, värkade gå fint tills att wow.exe crashar vid Event Trigger
+	SKRIV OM / RENT MyAddon.Lua
+
+	* Debug Function
+		Om Debug_Enabled = 1
+			Msg: Time + Function + Message
+			Printa det och Läg till i ett Debug Table som SavedVariable
 
 ]]--
 
