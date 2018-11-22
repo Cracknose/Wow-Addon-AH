@@ -1,6 +1,6 @@
 --[[
 
-
+    +++++
       Just nu fungerar det här "Konceptuelt"
       starta med '/ma scan0'
       och använd sedan '/ma scan1' för att bläddra frammåt, måste ske manuellt för automatiskt vill inte
@@ -9,6 +9,8 @@
       
       så frågan är kan man göra så att  Ma_Get_Auctions  märker om den returnar 0, dvs att AH inte är redo än
       
+
+    ++++++
       Gör ett Flödes Diagram
 
       1. "Query"      QueryAuctionItems("", 0, 0, 0, 0, 0, l_Page, 0, 0)
@@ -17,7 +19,7 @@
       ---------------
       . Reapeat
 
-
+    ++++++
       Just nu så har jag last det till punkten att Resultatet uppnåss (GRATTIS)
       MEN det är halvautomatiskt, jag måste trycka igång ett macro varje 6-8s sekund för uppdatering
 
@@ -25,12 +27,26 @@
 
       !! Kommentera !! Kommentera !! Kommentera !! Kommentera !!
 
+      allting funkar nu egentligen fast ibland hinner inte Eventet och AH refresh att synca
+      jag kollade lite i Aux adonnet och där används:
+          thread(when, later(5), send_signal)
+          thread(when, later(5), send_signal)
+
+
+      Kolla upp Thread
+
+
+      
+
 ]]--
 
 Ma_Total_Items = 0
 Ma_Page = 0
 Ma_datatable={}
 Ma_TableCount = 1
+-- Timer Variabler
+Ma_AuctionPagesBeforWait = 2
+Ma_TImer = 1
 
 
 local function print(TEXT)
@@ -49,7 +65,14 @@ MyFrame:SetScript("OnEvent", Event_AuctionUpdate)
 -- Event Function
 function Event_AuctionUpdate() 
   print("[AUCTION_ITEM_LIST_UPDATE]")
+  
+  Ma_AuctionPagesBeforWait = Ma_AuctionPagesBeforWait - 1
+  if Ma_AuctionPagesBeforWait == 0 then 
+    Ma_AuctionPagesBeforWait = 2
+    Ma_WaitTime(Ma_TImer) 
+  end
   Ma_Get_Auctions()
+
 end
 
 -- Slash Menu  /ma
@@ -75,7 +98,7 @@ function MyAddon_Slash(msg)
       Ma_PrintTable()
 
     elseif (msg == "time") then
-      My_Timer(1)
+      Ma_WaitTime(Ma_TImer)
 
     else
         print("Slash Error")
@@ -146,7 +169,25 @@ function Ma_Get_Auctions()
 
     Ma_Page = Ma_Page + 1
     Ma_Next_Page = Ma_Page + 1
-    Ma_Query_AH(Ma_Next_Page)   
+    Ma_Query_AH(Ma_Next_Page)
+    
+    
 
     
+end
+
+function Ma_WaitTime(T0)
+  local Time = GetTime()
+  Time = math.floor(Time)
+
+  local TimeCheck = Time + T0
+
+  print("Time: " .. Time .. ",  Check:  " .. TimeCheck)
+
+  while TimeCheck > Time do
+    Time = GetTime()
+    -- print(math.floor(GetTime()))
+  end
+  print("Done")
+
 end
