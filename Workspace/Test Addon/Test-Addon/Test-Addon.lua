@@ -5,6 +5,7 @@
 
     * Gjorde om alla Functions till Locals om det nu gör ngt felaktigt
     * Kolla upp AddMessage color schemes
+    * Kolla på att printa text i ett GUI ist för i chatten
 
 
     local waitTable = {}; 
