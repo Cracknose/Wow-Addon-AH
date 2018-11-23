@@ -1,0 +1,10 @@
+WoW 1.12 använder Lua 5.1
+
+Lua 5.1 Reference Guide
+http://www.lua.org/manual/5.1/
+
+UI GUIDE !!! 
+https://www.townlong-yak.com/framexml/1.12.1
+
+Länk samling
+http://vanilla-wow.wikia.com/wiki/World_of_Warcraft_Interface_Addon_Kit
