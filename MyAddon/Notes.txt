@@ -3,6 +3,10 @@ Tanka ner storpack med addons och sök sedan efter AH strängar i mappen
 För att se hur olika människor har programmerat sina addons
 
 
++++
+WoW Addon Studio
+https://archive.codeplex.com/?p=addonstudio
+
 http://wowprogramming.com/forums/development/76.html
 
 
